@@ -9,5 +9,4 @@
 ;;
 ;;; License: GPLv3
 
-(spacemacs/set-leader-keys-for-major-mode 'org-mode "op" 'org-preview-latex-fragment)
-(spacemacs/set-leader-keys "oo" 'org-preview-latex-fragment)
+(spacemacs/set-leader-keys "oo" 'org-toggle-latex-fragment)
