@@ -1,7 +1,7 @@
-#+TITLE: green-org layer
+#+TITLE: green-tool layer
 
 # The maximum height of the logo should be 200 pixels.
-[[img/green-org.png]]
+[[img/green-tool.png]]
 
 # TOC links should be GitHub style anchors.
 * Table of Contents                                        :TOC_4_gh:noexport:
@@ -11,19 +11,18 @@
 
 * Description
 This layer does wonderful things:
-  - configure org preview with xelatex
-  - configure org export pdf with xelatex
+  - auto-yasnippet
 
 * Install
 To use this configuration layer, add it to your =~/.spacemacs=. You will need to
-add =green-org= to the existing =dotspacemacs-configuration-layers= list in this
+add =green-tool= to the existing =dotspacemacs-configuration-layers= list in this
 file.
 
 * Key bindings
 
-| Key Binding | Description               |
-|-------------+---------------------------|
-| ~SPC o o ~  | org-toggle-latex-fragment |
+| Key Binding | Description    |
+|-------------+----------------|
+| ~SPC x x x~ | Does thing01   |
 # Use GitHub URLs if you wish to link a Spacemacs documentation file or its heading.
 # Examples:
 # [[https://github.com/syl20bnr/spacemacs/blob/master/doc/VIMUSERS.org#sessions]]

@@ -99,6 +99,14 @@ Each entry is either:
       (add-to-list 'org-latex-listings '("" "color"))
 
       (add-to-list 'org-latex-packages-alist
+                   '("" "fontenc" t))
+      (add-to-list 'org-latex-packages-alist
+                   '("" "algorithm" t))
+      (add-to-list 'org-latex-packages-alist
+                   '("" "algpseudocode" t))
+      (add-to-list 'org-latex-packages-alist
+                   '("" "algorithmicx" t))
+      (add-to-list 'org-latex-packages-alist
                    '("" "xcolor" t))
       (add-to-list 'org-latex-packages-alist
                    '("" "listings" t))
@@ -145,8 +153,7 @@ Each entry is either:
 
       (add-to-list 'org-latex-classes
                    '("xelatex-org-book"
-                     "\\documentclass{book}
-\\usepackage[slantfont, boldfont]{xeCJK}
+                     "\\documentclass{ctexbook}
 % chapter set
 \\usepackage{titlesec}
 \\usepackage{hyperref}
@@ -195,8 +202,10 @@ rulesepcolor= \\color{ red!20!green!20!blue!20}
 
   (add-to-list 'org-latex-classes
                '("xelatex-org-article"
-                 "\\documentclass{article}
-\\usepackage[slantfont, boldfont]{xeCJK}
+                 "\\documentclass{ctexart}
+\\usepackage{xltxtra}
+\\usepackage{fontspec}
+\\usepackage{xunicode}
 \\usepackage{titlesec}
 \\usepackage{hyperref}
 
@@ -242,8 +251,9 @@ rulesepcolor= \\color{ red!20!green!20!blue!20}
 
   (add-to-list 'org-latex-classes
                '("xelatex-org-beamer"
-                 "\\documentclass{beamer}
-\\usepackage[slantfont, boldfont]{xeCJK}
+                 "\\documentclass{ctexbeamer}
+\\usepackage{ctexcap}
+\\usepackage{varwidth}
 % beamer set
 \\usepackage[none]{hyphenat}
 \\usepackage[abs]{overpic}
