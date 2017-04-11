@@ -23,7 +23,7 @@ file.
 
 | Key Binding | Description               |
 |-------------+---------------------------|
-| ~SPC o o ~  | org-toggle-latex-fragment |
+| ~SPC o o~   | org-toggle-latex-fragment |
 # Use GitHub URLs if you wish to link a Spacemacs documentation file or its heading.
 # Examples:
 # [[https://github.com/syl20bnr/spacemacs/blob/master/doc/VIMUSERS.org#sessions]]

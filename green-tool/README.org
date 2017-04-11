@@ -20,9 +20,11 @@ file.
 
 * Key bindings
 
-| Key Binding | Description    |
-|-------------+----------------|
-| ~SPC x x x~ | Does thing01   |
+| Key Binding | Description   |
+|-------------+---------------|
+| ~SPC o a w~ | aya-create    |
+| ~SPC o a y~ | aya-expand    |
+| ~SPC o a o~ | aya-open-line |
 # Use GitHub URLs if you wish to link a Spacemacs documentation file or its heading.
 # Examples:
 # [[https://github.com/syl20bnr/spacemacs/blob/master/doc/VIMUSERS.org#sessions]]
