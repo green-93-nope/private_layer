@@ -30,7 +30,7 @@
 ;;; Code:
 
 (defconst green-tool-packages
-  '(auto-yasnippet)
+  '(openwith)
   "The list of Lisp packages required by the green-tool layer.
 
 Each entry is either:
@@ -58,5 +58,11 @@ Each entry is either:
       - A list beginning with the symbol `recipe' is a melpa
         recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
 
+(defun green-tool/init-openwith ()
+  (use-package openwith
+    :init
+    (openwith-mode t)
+    (setq openwith-associations '(("\\.pdf\\'" "okular" (file)))))
+  )
 
 ;;; packages.el ends here

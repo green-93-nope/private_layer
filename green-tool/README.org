@@ -11,7 +11,7 @@
 
 * Description
 This layer does wonderful things:
-  - auto-yasnippet
+  - 
 
 * Install
 To use this configuration layer, add it to your =~/.spacemacs=. You will need to
@@ -22,9 +22,6 @@ file.
 
 | Key Binding | Description   |
 |-------------+---------------|
-| ~SPC o a w~ | aya-create    |
-| ~SPC o a y~ | aya-expand    |
-| ~SPC o a o~ | aya-open-line |
 # Use GitHub URLs if you wish to link a Spacemacs documentation file or its heading.
 # Examples:
 # [[https://github.com/syl20bnr/spacemacs/blob/master/doc/VIMUSERS.org#sessions]]

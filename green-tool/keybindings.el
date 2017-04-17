@@ -9,7 +9,3 @@
 ;;
 ;;; License: GPLv3
 
-(spacemacs/declare-prefix "oa" "aya")
-(spacemacs/set-leader-keys "oaw" #'aya-create)
-(spacemacs/set-leader-keys "oay" #'aya-expand)
-(spacemacs/set-leader-keys "oao" #'aya-open-line)
