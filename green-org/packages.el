@@ -32,6 +32,9 @@
 (defconst green-org-packages
   '(
     org
+    org-octopress
+    ox-publish
+    prodigy
     )
   "The list of Lisp packages required by the green-org layer.
 
@@ -61,6 +64,42 @@ Each entry is either:
         recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
 
 (defun green-org/post-init-org()
+  (with-eval-after-load 'org-octopress
+    (setq org-octopress-directory-top       "~/Hexo")
+    (setq org-octopress-directory-posts     "~/Hexo/source/_posts")
+    (setq org-octopress-directory-org-top   "~/Hexo")
+    (setq org-octopress-directory-org-posts "~/Hexo/blog")
+    (setq org-octopress-setup-file "~/Hexo/setupfile.org")
+    )
+  (with-eval-after-load 'ox-publish
+    (defun org-custom-link-img-follow (path)
+      (org-open-file-with-emacs
+       (format "../source/img/%s" path)))
+    (defun org-custom-link-img-export (path desc format)
+      (cond
+       ((eq format 'html)
+        (format "<img src=\"/img/%s\" alt=\"%s\"/>" path desc))))
+    (org-add-link-type "img" 'org-custom-link-img-follow 'org-custom-link-img-export)
+    )
+  (with-eval-after-load 'prodigy
+    (prodigy-define-service
+      :name "Hexo Server"
+      :command "hexo"
+      :args '("server")
+      :cwd "~/Hexo"
+      :tags '(hexo server)
+      :kill-signal 'sigkill
+      :kill-process-buffer-on-stop t)
+
+    (prodigy-define-service
+      :name "Hexo Deploy"
+      :command "hexo"
+      :args '("deploy" "--generate")
+      :cwd "~/Hexo"
+      :tags '(hexo deploy)
+      :kill-signal 'sigkill
+      :kill-process-buffer-on-stop t)
+    )
   (with-eval-after-load 'org
     (progn
       (setq org-capture-templates
