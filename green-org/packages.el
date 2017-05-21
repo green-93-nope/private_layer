@@ -62,15 +62,7 @@ Each entry is either:
 
       - A list beginning with the symbol `recipe' is a melpa
         recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
-
-(defun green-org/post-init-org()
-  (with-eval-after-load 'org-octopress
-    (setq org-octopress-directory-top       "~/Hexo")
-    (setq org-octopress-directory-posts     "~/Hexo/source/_posts")
-    (setq org-octopress-directory-org-top   "~/Hexo")
-    (setq org-octopress-directory-org-posts "~/Hexo/blog")
-    (setq org-octopress-setup-file "~/Hexo/setupfile.org")
-    )
+(defun green-org/post-init-ox-publish()
   (with-eval-after-load 'ox-publish
     (defun org-custom-link-img-follow (path)
       (org-open-file-with-emacs
@@ -81,6 +73,21 @@ Each entry is either:
         (format "<img src=\"/img/%s\" alt=\"%s\"/>" path desc))))
     (org-add-link-type "img" 'org-custom-link-img-follow 'org-custom-link-img-export)
     )
+  )
+(defun green-org/init-org-octopress()
+  (use-package org-octopress
+    :commands (org-octopress org-octopress-setup-publish-project)
+    :init
+    (progn
+      (setq org-octopress-directory-top       "~/Hexo")
+      (setq org-octopress-directory-posts     "~/Hexo/source/_posts")
+      (setq org-octopress-directory-org-top   "~/Hexo")
+      (setq org-octopress-directory-org-posts "~/Hexo/blog")
+      (setq org-octopress-setup-file "~/Hexo/setupfile.org")
+      )
+    )
+  )
+(defun green-org/post-init-prodigy()
   (with-eval-after-load 'prodigy
     (prodigy-define-service
       :name "Hexo Server"
@@ -100,6 +107,9 @@ Each entry is either:
       :kill-signal 'sigkill
       :kill-process-buffer-on-stop t)
     )
+  )
+
+(defun green-org/post-init-org()
   (with-eval-after-load 'org
     (progn
       (setq org-capture-templates
