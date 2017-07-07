@@ -9,4 +9,5 @@
 ;;
 ;;; License: GPLv3
 
-(spacemacs/set-leader-keys "oo" 'org-toggle-latex-fragment)
+(spacemacs/set-leader-keys "ol" 'org-toggle-latex-fragment)
+(spacemacs/set-leader-keys "oo" 'org-octopress)
