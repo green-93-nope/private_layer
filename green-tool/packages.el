@@ -30,7 +30,9 @@
 ;;; Code:
 
 (defconst green-tool-packages
-  '(openwith)
+  '(openwith
+    atomic-chrome
+    )
   "The list of Lisp packages required by the green-tool layer.
 
 Each entry is either:
@@ -84,4 +86,38 @@ Each entry is either:
     )
   )
 
+(defun green-tool/init-atomic-chrome ()
+  (use-package atomic-chrome
+    :init
+    (atomic-chrome-start-server)
+        )
+  )
+
+(defun green-tool/my-find-file-internal (directory)
+  "Find file in Directory."
+  (let*((cmd "find . -path \"*/.git\" -prune -o -print -type f -name \"*.*\"")
+       (default-directory directory)
+       (output (shell-command-to-string cmd))
+       (lines (cdr (split-string output "[\n\r]+")))
+       selected-line)
+    (setq selected-line (ivy-read (format "Find file in %s: " default-directory)
+                                  lines))
+    (when (and selected-line (file-exists-p selected-line))
+      (find-file selected-line))))
+
+(defun green-tool/my-find-file-in-project()
+  "Find file in project root directory"
+  (interactive)
+  (green-tool/my-find-file-internal (locate-dominating-file default-directory ".git")))
+
+(defun green-tool/my-find-file (&optional level)
+  (interactive "P")
+  (unless level
+    (setq level 0))
+  (let* ((parent-directory default-directory)
+         (i 0))
+    (while (< i level)
+      (setq parent-directory (file-name-directory (directory-file-name parent-directory)))
+      (setq i (+ i 1)))
+    (green-tool/my-find-file-internal parent-directory)))
 ;;; packages.el ends here

@@ -87,6 +87,7 @@ Each entry is either:
       )
     )
   )
+
 (defun green-org/post-init-prodigy()
   (with-eval-after-load 'prodigy
     (prodigy-define-service
@@ -113,13 +114,23 @@ Each entry is either:
   (with-eval-after-load 'org
     (progn
       (setq org-capture-templates
-            '(("t" "Todo" entry (file+headline "~/org/gtd.org" "Tasks")
-               "* TODO %?\n  %i\n  %a")
-              ("j" "Journal" entry (file+datetree "~/org/journal.org")
-               "* %?\nEntered on %U\n  %i\n  %a")
-              ("n" "Notes" entry (file+datetree "~/org/journal.org")
-               "* %?\nEntered on %U\n  %i\n  %a")))
-
+            '(("t" "Todo" entry (file "~/Dropbox/notes/todo.org")
+               "* TODO %?\n%U" :empty-lines 1)
+              ("T" "Todo with Clipboard" entry (file "~/Dropbox/notes/todo.org")
+               "* TODO %?\n%U\n   %c" :empty-lines 1)
+              ("n" "Note" entry (file "~/Dropbox/notes/notes.org")
+               "* NOTE %?\n%U" :empty-lines 1)
+              ("N" "Note with Clipboard" entry (file "~/Dropbox/notes/notes.org")
+               "* NOTE %?\n%U\n   %c" :empty-lines 1)
+              ("e" "Event" entry (file+headline "~/Dropbox/notes/notes.org" "Transient")
+               "* EVENT %?\n%U" :empty-lines 1)
+              ("E" "Event With Clipboard" entry (file+headline "~/Dropbox/notes/notes.org" "Transient")
+               "* EVENT %?\n%U\n   %c" :empty-lines 1)
+              ("L" "Protocol Link" entry (file+headline "~/Dropbox/notes/notes.org" "Inbox")
+               "* %? [[%:link][%:description]] \nCaptured On: %U")
+              ("p" "Protocol" entry (file+headline "~/Dropbox/notes/notes.org" "Inbox")
+               "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
+              ))
       (setq org-agenda-files (list "~/org/work.org"
                                    "~/org/school.org" 
                                    "~/org/home.org"
