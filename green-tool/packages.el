@@ -95,7 +95,7 @@ Each entry is either:
 
 (defun green-tool/my-find-file-internal (directory)
   "Find file in Directory."
-  (let*((cmd "find . -path \"*/.git\" -prune -o -print -type f -name \"*.*\"")
+  (let*((cmd "fd -t f")
        (default-directory directory)
        (output (shell-command-to-string cmd))
        (lines (cdr (split-string output "[\n\r]+")))
